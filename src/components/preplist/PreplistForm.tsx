@@ -484,6 +484,22 @@ export function PreplistForm() {
     });
   };
 
+  const handleAutofill = () => {
+    setValues((prev) => {
+      const next = { ...prev };
+      SECTIONS.forEach((section) => {
+        section.fields.forEach((field) => {
+          if (field.type === "checkboxGroup" || field.type === "select") return;
+          if (field.placeholder && isEmpty(next[field.id])) {
+            next[field.id] = field.placeholder;
+          }
+        });
+      });
+      persistSave(next);
+      return next;
+    });
+  };
+
   const handleExport = () => {
     const payload = { version: 1, exportedAt: new Date().toISOString(), name: (values["fullName"] as string) || "My Keychain", keychain: values };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -545,6 +561,14 @@ export function PreplistForm() {
                 style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
               >
                 Import
+              </button>
+              <button
+                type="button"
+                onClick={handleAutofill}
+                className="inline-flex items-center px-3 h-8 rounded-full text-xs font-medium border transition-colors whitespace-nowrap hover:opacity-80"
+                style={{ borderColor: "var(--accent)", color: "var(--accent)", background: "var(--surface-elevated)" }}
+              >
+                Autofill
               </button>
               <button
                 type="button"
