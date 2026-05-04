@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* ── Fonts ─────────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+
+  --blue:         #4F46E5;
+  --blue-dark:    #3730A3;
+  --blue-bright:  #6366F1;
+  --blue-tint:    #EEF2FF;
+  --blue-light:   #C7D2FE;
+
+  --background:   #F9F9F7;
+  --background-2: #F1F0EE;
+  --foreground:   #0D0C0B;
+  --card:         #FFFFFF;
+  --card-border:  #E4E2DE;
+  --card-border-strong: #C8C5BF;
+  --muted:        #8B8680;
+  --muted-strong: #5C5751;
+  --muted-bg:     #EDEBE8;
+  --ink:          #1A1917;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --blue:         #6366F1;
+    --blue-dark:    #818CF8;
+    --blue-bright:  #818CF8;
+    --blue-tint:    #1E1B4B;
+    --blue-light:   #A5B4FC;
+
+    --background:   #0D0C0B;
+    --background-2: #141311;
+    --foreground:   #F2EFE8;
+    --card:         #1A1917;
+    --card-border:  #2A2825;
+    --card-border-strong: #3A3835;
+    --muted:        #6B6762;
+    --muted-strong: #9B978F;
+    --muted-bg:     #1E1C1A;
+    --ink:          #0A0908;
+  }
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-family: var(--font-inter); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  &:focus { left: 1rem; top: 1rem; z-index: 999; }
+}
+
+.eyebrow {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
