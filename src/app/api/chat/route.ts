@@ -1,8 +1,6 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { NextResponse } from 'next/server';
 import { AGENTS, MODEL, calcCost, BUDGET_USD } from '@/lib/agents';
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+import { getLocalResponse, simulateUsage } from '@/lib/localResponder';
 
 export async function POST(req: Request) {
   const { agentSlug, messages, budgetSpent } = await req.json() as {
@@ -14,12 +12,27 @@ export async function POST(req: Request) {
   const agent = AGENTS[agentSlug];
   if (!agent) return NextResponse.json({ error: 'Unknown agent' }, { status: 400 });
 
+  const userMessage = messages.at(-1)?.content ?? '';
+
+  // ── No API key: use local knowledge engine ───────────────────────────
+  if (!process.env.ANTHROPIC_API_KEY) {
+    const content = getLocalResponse(agentSlug as 'eli' | 'nora', userMessage);
+    const usage = simulateUsage(userMessage, content);
+    return NextResponse.json({ content, usage });
+  }
+
+  // ── API key present: check budget, then call Anthropic ───────────────
   const remaining = BUDGET_USD - (budgetSpent ?? 0);
   if (remaining <= 0) {
-    return NextResponse.json({ error: 'Budget exhausted. Add more funds to continue.' }, { status: 402 });
+    const content = getLocalResponse(agentSlug as 'eli' | 'nora', userMessage);
+    const usage = simulateUsage(userMessage, content);
+    return NextResponse.json({ content, usage, budgetExhausted: true });
   }
 
   try {
+    const Anthropic = (await import('@anthropic-ai/sdk')).default;
+    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
     const response = await client.messages.create({
       model: MODEL,
       max_tokens: 1024,
@@ -31,9 +44,11 @@ export async function POST(req: Request) {
     const { input_tokens, output_tokens } = response.usage;
     const cost = calcCost(input_tokens, output_tokens);
 
-    return NextResponse.json({ content, usage: { input_tokens, output_tokens, cost } });
+    return NextResponse.json({ content, usage: { input_tokens, output_tokens, cost, isLocal: false } });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'API error';
-    return NextResponse.json({ error: message }, { status: 500 });
+    // API call failed — fall back to local rather than returning an error
+    const content = getLocalResponse(agentSlug as 'eli' | 'nora', userMessage);
+    const usage = simulateUsage(userMessage, content);
+    return NextResponse.json({ content, usage, fallback: true });
   }
 }

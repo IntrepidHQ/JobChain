@@ -9,7 +9,7 @@ import { type AgentConfig, BUDGET_USD, BUDGET_KEY, formatUSD } from '@/lib/agent
 interface Message {
   role: 'user' | 'assistant';
   content: string;
-  usage?: { input_tokens: number; output_tokens: number; cost: number };
+  usage?: { input_tokens: number; output_tokens: number; cost: number; isLocal?: boolean };
 }
 
 // ── Minimal markdown renderer ──────────────────────────────────────────────
@@ -272,9 +272,18 @@ export function ChatInterface({ agent }: { agent: AgentConfig }) {
                   {/* Token usage under assistant messages */}
                   {msg.role === 'assistant' && msg.usage && (
                     <div className="flex items-center gap-2 px-1 text-[10px]" style={{ color: 'var(--muted-foreground)' }}>
-                      <span>{msg.usage.input_tokens}↑ {msg.usage.output_tokens}↓ tokens</span>
-                      <span>·</span>
-                      <span>{formatUSD(msg.usage.cost)}</span>
+                      {msg.usage.isLocal ? (
+                        <span className="px-1.5 py-0.5 rounded-full text-[9px] font-medium"
+                          style={{ background: 'var(--surface-elevated)', color: 'oklch(0.72 0.15 150)', border: '1px solid var(--border)' }}>
+                          Local · no API cost
+                        </span>
+                      ) : (
+                        <>
+                          <span>{msg.usage.input_tokens}↑ {msg.usage.output_tokens}↓ tokens</span>
+                          <span>·</span>
+                          <span>{formatUSD(msg.usage.cost)}</span>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
@@ -354,7 +363,11 @@ export function ChatInterface({ agent }: { agent: AgentConfig }) {
         {(sessionTokens.in > 0) && (
           <div className="max-w-2xl mx-auto mt-2 flex justify-between px-1 text-[10px]"
             style={{ color: 'var(--muted-foreground)' }}>
-            <span>Session: {sessionTokens.in + sessionTokens.out} tokens · {formatUSD(budgetSpent)} total</span>
+            <span>
+              {budgetSpent > 0
+                ? `Session: ${sessionTokens.in + sessionTokens.out} tokens · ${formatUSD(budgetSpent)} total`
+                : `Session: ${sessionTokens.in + sessionTokens.out} est. tokens · Local (free)`}
+            </span>
             <span>Shift+Enter for new line</span>
           </div>
         )}
