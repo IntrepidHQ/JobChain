@@ -72,6 +72,9 @@
   .text-pretty         { text-wrap: pretty; }
 }
 
+/* Hide scrollbar visually while keeping scroll behavior */
+[style*="scrollbar-width: none"]::-webkit-scrollbar { display: none; }
+
 .skip-link {
   position: absolute;
   left: -9999px;
