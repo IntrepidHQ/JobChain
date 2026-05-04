@@ -1,37 +1,60 @@
 import Link from "next/link";
+import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t mt-24" style={{ borderColor: "var(--card-border)" }}>
-      <div
-        className="max-w-7xl mx-auto px-5 sm:px-8 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
-        style={{ color: "var(--muted-strong)" }}
-      >
+    <footer className="border-t mt-32" style={{ borderColor: "var(--border)" }}>
+      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-10 sm:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2 font-bold text-sm mb-1" style={{ color: "var(--foreground)" }}>
-            <span
-              className="h-6 w-6 rounded-md flex items-center justify-center text-xs font-bold text-white"
-              style={{ background: "var(--blue)" }}
+          <div className="flex items-center gap-2.5">
+            <div
+              className="h-10 w-10 rounded-full grid place-items-center font-display text-base font-bold tracking-wide shrink-0"
+              style={{ background: "var(--foreground)", color: "var(--background)" }}
             >
-              J
-            </span>
-            JobChain
+              JC
+            </div>
+            <div className="font-display text-2xl">JobChain</div>
           </div>
-          <p className="text-xs" style={{ color: "var(--muted)" }}>
-            Free, local-only. Your data never leaves your browser.
+          <p className="mt-3 text-sm max-w-xs" style={{ color: "var(--muted-foreground)" }}>
+            Free job application keychain. Fill once, apply fast. No account. No cloud. No friction.
           </p>
         </div>
-        <div className="flex items-center gap-5 text-sm">
-          <Link href="/preplist" className="hover:text-[var(--foreground)] transition-colors">Preplist</Link>
-          <a href="https://hansturner.com" target="_blank" rel="noreferrer" className="hover:text-[var(--foreground)] transition-colors">
-            Built by Hans Turner ↗
-          </a>
+
+        <div className="text-sm">
+          <div className="mb-3" style={{ color: "var(--muted-foreground)" }}>Navigate</div>
+          <ul className="space-y-2">
+            <li><Link href="/" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Home</Link></li>
+            <li><Link href="/preplist" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Preplist</Link></li>
+            <li>
+              <a href="https://hansturner.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>
+                hansturner.com ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="text-sm">
+          <div className="mb-3" style={{ color: "var(--muted-foreground)" }}>Contact</div>
+          <ul className="space-y-3">
+            <li>
+              <a
+                href="mailto:hansdturner@gmail.com"
+                className="flex items-center gap-2 hover:text-white transition-colors"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                <Mail className="h-3.5 w-3.5" />
+                hansdturner@gmail.com
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div className="border-t" style={{ borderColor: "var(--card-border)" }}>
-        <p className="max-w-7xl mx-auto px-5 sm:px-8 py-4 text-xs" style={{ color: "var(--muted)" }}>
-          © {new Date().getFullYear()} JobChain. No account required. No data collected.
-        </p>
+
+      <div className="border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="mx-auto max-w-7xl px-6 py-6 flex justify-between text-xs" style={{ color: "var(--muted-foreground)" }}>
+          <span>© {new Date().getFullYear()} JobChain — built by Hans Turner</span>
+          <span>No data collected.</span>
+        </div>
       </div>
     </footer>
   );

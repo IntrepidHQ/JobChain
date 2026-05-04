@@ -13,63 +13,61 @@ export default function PreplistPage() {
   return (
     <>
       <Navbar />
-      <main id="main" className="pt-[4.5rem] overflow-x-hidden">
+      <main id="main" className="overflow-x-hidden">
         {/* Hero */}
-        <section
-          className="relative py-16 sm:py-24 px-5 sm:px-8 border-b overflow-hidden"
-          style={{ borderColor: "var(--card-border)" }}
-        >
-          <div className="absolute inset-0 pointer-events-none" aria-hidden>
-            <div
-              className="absolute top-0 right-0 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full opacity-[0.06]"
-              style={{ background: "radial-gradient(circle, var(--blue) 0%, transparent 65%)" }}
-            />
+        <section className="relative overflow-hidden min-h-[60vh] flex items-end pb-16">
+          <div className="absolute inset-0 pointer-events-none select-none" aria-hidden>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: "brightness(0.22)" }}
+            >
+              <source src="/exosphere_remix_scene.webm" type="video/webm" />
+            </video>
+            <div className="absolute inset-0" style={{ background: "var(--gradient-spot)", opacity: 0.5 }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to top, var(--background) 0%, transparent 60%)" }} />
           </div>
-          <div className="max-w-7xl mx-auto relative">
-            <div className="max-w-3xl">
-              <div
-                className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border mb-6 text-[11px] eyebrow"
-                style={{ borderColor: "var(--card-border-strong)", background: "var(--card)", color: "var(--muted-strong)" }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--blue)" }} aria-hidden />
-                Free — No Account Required
-              </div>
 
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.0] tracking-tight mb-6" style={{ color: "var(--foreground)" }}>
-                Job Application{" "}
-                <span style={{ color: "var(--blue)" }}>Preplist.</span>
-              </h1>
+          <div className="relative mx-auto max-w-4xl px-6 w-full pt-36">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-4" style={{ color: "var(--muted-foreground)" }}>
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+              Free — No Account Required
+            </div>
+            <h1 className="font-display text-5xl md:text-7xl text-balance leading-[0.95] max-w-2xl mb-6">
+              Job Application{" "}
+              <span style={{ color: "var(--accent)" }}>Preplist.</span>
+            </h1>
+            <p className="text-lg sm:text-xl max-w-xl mb-8 text-pretty leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
+              Stop retyping the same answers on every application. Fill this out once — personal info,
+              work history, skills, and pre-written answers to every question recruiters ask.
+            </p>
 
-              <p className="text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl font-light" style={{ color: "var(--muted-strong)" }}>
-                Stop retyping the same answers on every application. Fill this out once and build your
-                reusable keychain — personal info, work history, skills, and pre-written answers to
-                every question recruiters ask.
-              </p>
-
-              <div className="grid sm:grid-cols-3 gap-4 mb-2">
-                {[
-                  { stat: "100%", label: "Local — never leaves your browser" },
-                  { stat: "~10 min", label: "Time to fill the key sections" },
-                  { stat: "5 sections", label: "Covering every application field" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="p-4 rounded-xl border"
-                    style={{ background: "var(--card)", borderColor: "var(--card-border)" }}
-                  >
-                    <div className="text-2xl font-bold mb-1" style={{ color: "var(--foreground)" }}>{item.stat}</div>
-                    <div className="text-xs font-light leading-snug" style={{ color: "var(--muted-strong)" }}>{item.label}</div>
-                  </div>
-                ))}
-              </div>
+            <div className="grid sm:grid-cols-3 gap-4 max-w-2xl">
+              {[
+                { stat: "100%", label: "Local — never leaves your browser" },
+                { stat: "~10 min", label: "Time to fill the key sections" },
+                { stat: "5 sections", label: "Covering every application field" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl border p-4 shadow-card"
+                  style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+                >
+                  <div className="font-display text-2xl mb-1">{item.stat}</div>
+                  <div className="text-xs leading-snug" style={{ color: "var(--muted-foreground)" }}>{item.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* How it works banner */}
-        <div className="border-b px-4 sm:px-8 py-5" style={{ background: "var(--background-2)", borderColor: "var(--card-border)" }}>
+        <div className="border-y px-4 sm:px-8 py-5" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
           <div className="max-w-7xl mx-auto">
-            <ol className="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:divide-x" style={{ "--tw-divide-opacity": 1 } as React.CSSProperties}>
+            <ol className="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:divide-x" style={{ "--tw-divide-color": "var(--border)" } as React.CSSProperties}>
               {[
                 { n: "1", text: "Fill in your details below — takes about 10 minutes for the essentials." },
                 { n: "2", text: "Everything auto-saves in your browser. Nothing leaves your device." },
@@ -78,12 +76,12 @@ export default function PreplistPage() {
               ].map((step) => (
                 <div key={step.n} className="flex items-start gap-3 sm:px-6 first:pl-0 last:pr-0">
                   <span
-                    className="flex-shrink-0 w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center text-white"
-                    style={{ background: "var(--blue)" }}
+                    className="flex-shrink-0 w-6 h-6 rounded-full text-xs font-medium flex items-center justify-center"
+                    style={{ background: "var(--surface-elevated)", color: "var(--accent)", border: "1px solid var(--border)" }}
                   >
                     {step.n}
                   </span>
-                  <p className="text-sm font-light leading-relaxed" style={{ color: "var(--muted-strong)" }}>{step.text}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>{step.text}</p>
                 </div>
               ))}
             </ol>
@@ -91,45 +89,26 @@ export default function PreplistPage() {
         </div>
 
         {/* Form */}
-        <div className="overflow-x-hidden">
-          <PreplistForm />
-        </div>
+        <PreplistForm />
 
         {/* FAQ */}
-        <section
-          className="py-12 sm:py-16 px-5 sm:px-8 border-t"
-          style={{ background: "var(--background-2)", borderColor: "var(--card-border)" }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-8" style={{ color: "var(--foreground)" }}>
-              Questions about the Preplist
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-5 max-w-4xl">
+        <section className="border-t px-5 sm:px-8 py-16" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-display text-3xl sm:text-4xl mb-8">Questions about the Preplist</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
               {[
-                {
-                  q: "Is my data actually private?",
-                  a: "Yes. Everything you enter is stored in your browser's localStorage only. It never touches any server. Export the JSON to back it up or move it.",
-                },
-                {
-                  q: "What if I clear my browser data?",
-                  a: "Your keychain would be lost. Export it as a JSON file before clearing browser storage — you can re-import it any time.",
-                },
-                {
-                  q: "Can I use this on multiple devices?",
-                  a: "Export your keychain as JSON on one device, then import it on another. No sync — fully manual and intentional.",
-                },
-                {
-                  q: "Is this the whole product?",
-                  a: "The Preplist is free forever. It's a standalone tool for fast job applications — no upsell, no subscription, no hidden anything.",
-                },
+                { q: "Is my data actually private?", a: "Yes. Everything is stored in your browser's localStorage only. It never touches any server. Export the JSON to back it up." },
+                { q: "What if I clear my browser data?", a: "Export your keychain as JSON before clearing browser storage — you can re-import it any time." },
+                { q: "Can I use this on multiple devices?", a: "Export on one device, import on another. Fully manual and intentional — no background sync." },
+                { q: "Is this really free?", a: "Yes. Free forever. No upsell, no subscription, no hidden anything. It's a tool, not a product." },
               ].map((item) => (
                 <div
                   key={item.q}
-                  className="p-5 sm:p-6 rounded-xl border"
-                  style={{ background: "var(--card)", borderColor: "var(--card-border)" }}
+                  className="rounded-2xl border p-6 shadow-card"
+                  style={{ background: "var(--surface-elevated)", borderColor: "var(--border)" }}
                 >
-                  <h3 className="font-semibold mb-2" style={{ color: "var(--foreground)" }}>{item.q}</h3>
-                  <p className="text-sm font-light leading-relaxed" style={{ color: "var(--muted-strong)" }}>{item.a}</p>
+                  <h3 className="font-medium mb-2">{item.q}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted-foreground)" }}>{item.a}</p>
                 </div>
               ))}
             </div>
