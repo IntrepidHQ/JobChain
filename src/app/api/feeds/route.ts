@@ -16,6 +16,7 @@ export interface FeedItem {
 const FEEDS = [
   { name: 'Remotive',          category: 'jobs',     url: 'https://remotive.com/remote-jobs/rss-feed' },
   { name: 'We Work Remotely',  category: 'jobs',     url: 'https://weworkremotely.com/remote-job-rss-feed' },
+  { name: 'YC Jobs',           category: 'jobs',     url: 'https://rss.app/feeds/63w7SzfSyKUxs0pA.xml' },
   { name: 'OpenAI',            category: 'ai',       url: 'https://rss.app/feeds/teG8Gwq5iXvnKgUX.xml' },
   { name: 'Hugging Face',      category: 'ai',       url: 'https://rss.app/feeds/sNDGziuHXqqKTrSM.xml' },
   { name: 'Import AI',         category: 'ai',       url: 'https://jack-clark.net/feed/' },
