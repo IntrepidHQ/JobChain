@@ -14,9 +14,11 @@ export interface FeedItem {
 }
 
 const FEEDS = [
-  { name: 'Remotive',          category: 'jobs',     url: 'https://remotive.com/feed' },
-  { name: 'YC Jobs',           category: 'jobs',     url: 'https://www.ycombinator.com/jobs/rss' },
+  { name: 'Remotive',          category: 'jobs',     url: 'https://remotive.com/remote-jobs/rss-feed' },
+  { name: 'We Work Remotely',  category: 'jobs',     url: 'https://weworkremotely.com/remote-job-rss-feed' },
+  // OpenAI has no stable direct RSS — replace URL below with an RSS.app-generated feed for https://openai.com/news/
   { name: 'OpenAI',            category: 'ai',       url: 'https://openai.com/news/rss.xml' },
+  // Hugging Face has no stable direct RSS — replace URL below with an RSS.app-generated feed for https://huggingface.co/blog
   { name: 'Hugging Face',      category: 'ai',       url: 'https://huggingface.co/blog/feed.xml' },
   { name: 'Import AI',         category: 'ai',       url: 'https://jack-clark.net/feed/' },
   { name: 'Smashing Magazine', category: 'design',   url: 'https://www.smashingmagazine.com/feed/' },
