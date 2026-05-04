@@ -26,6 +26,7 @@ export function Footer() {
             <li><Link href="/" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Home</Link></li>
             <li><Link href="/preplist" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Preplist</Link></li>
             <li><Link href="/focus" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Focus</Link></li>
+            <li><Link href="/agents" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>Agents</Link></li>
             <li>
               <a href="https://hansturner.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" style={{ color: "var(--muted-foreground)" }}>
                 hansturner.com ↗

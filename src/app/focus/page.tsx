@@ -109,10 +109,8 @@ export default function FocusPage() {
                 href={p.url}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-2xl border p-5 shadow-card flex flex-col gap-3 transition-colors"
+                className="card-hover group rounded-2xl border p-5 shadow-card flex flex-col gap-3 transition-colors"
                 style={{ background: "var(--surface)", borderColor: "var(--border)" }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent-dim)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}
               >
                 <div className="flex items-center justify-between">
                   <div className="font-display text-lg">{p.name}</div>

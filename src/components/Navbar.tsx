@@ -29,6 +29,7 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-7 text-sm" style={{ color: "var(--muted-foreground)" }}>
             <Link href="/preplist" className="hover:text-white transition-colors">Preplist</Link>
             <Link href="/focus" className="hover:text-white transition-colors">Focus</Link>
+            <Link href="/agents" className="hover:text-white transition-colors">Agents</Link>
             <a href="https://hansturner.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
               hansturner.com
             </a>
@@ -63,6 +64,7 @@ export function Navbar() {
             <nav className="flex flex-col gap-5 text-sm" style={{ color: "var(--muted-foreground)" }}>
               <Link href="/preplist" onClick={() => setOpen(false)} className="hover:text-white transition-colors">Preplist</Link>
               <Link href="/focus" onClick={() => setOpen(false)} className="hover:text-white transition-colors">Focus</Link>
+              <Link href="/agents" onClick={() => setOpen(false)} className="hover:text-white transition-colors">Agents</Link>
               <a href="https://hansturner.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
                 hansturner.com ↗
               </a>

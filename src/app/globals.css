@@ -72,6 +72,9 @@
   .text-pretty         { text-wrap: pretty; }
 }
 
+/* Card hover border accent */
+.card-hover:hover { border-color: var(--accent-dim) !important; }
+
 /* Hide scrollbar visually while keeping scroll behavior */
 [style*="scrollbar-width: none"]::-webkit-scrollbar { display: none; }
 
